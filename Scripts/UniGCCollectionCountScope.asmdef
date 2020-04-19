@@ -1,5 +1,5 @@
 {
-    "name": "UniGCCollectionCountChecker",
+    "name": "UniGCCollectionCountScope",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

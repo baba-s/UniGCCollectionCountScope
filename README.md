@@ -1,1 +1,1 @@
-# Uni GC Collection Count Checker
+# Uni GC Collection Count Scope

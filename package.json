@@ -1,6 +1,6 @@
 {
-    "name": "com.baba-s.uni-gc-collection-count-checker",
-    "displayName": "UniGCCollectionCountChecker",
+    "name": "com.baba-s.uni-gc-collection-count-scope",
+    "displayName": "UniGCCollectionCountScope",
     "version": "1.0.0",
     "unity": "2019.2",
     "author": "baba-s",
