@@ -10,18 +10,20 @@ namespace UniGCCollectionCountScope
 		//==============================================================================
 		// デリゲート
 		//==============================================================================
+		public delegate void OnStartCallback( string name );
+
 		public delegate void OnCompleteCallback( string name, int count );
 
 		//==============================================================================
 		// 変数(readonly)
 		//==============================================================================
-		private readonly string             m_name;
-		private readonly int                m_startCount;
-		private readonly OnCompleteCallback m_onComplete;
+		private readonly string m_name;
+		private readonly int    m_startCount;
 
 		//==============================================================================
 		// イベント(static)
 		//==============================================================================
+		public static event OnStartCallback    OnStart;
 		public static event OnCompleteCallback OnComplete;
 
 		//==============================================================================
@@ -30,18 +32,11 @@ namespace UniGCCollectionCountScope
 		/// <summary>
 		/// 計測を開始します
 		/// </summary>
-		public GCCollectionCountScope( string name, OnCompleteCallback onComplete )
+		public GCCollectionCountScope( string name )
 		{
 			m_name       = name;
 			m_startCount = GC.CollectionCount( 0 );
-			m_onComplete = onComplete;
-		}
-
-		/// <summary>
-		/// 計測を開始します
-		/// </summary>
-		public GCCollectionCountScope( string name ) : this( name, null )
-		{
+			OnStart?.Invoke( name );
 		}
 
 		/// <summary>
@@ -50,7 +45,6 @@ namespace UniGCCollectionCountScope
 		public void Dispose()
 		{
 			var count = GC.CollectionCount( 0 ) - m_startCount;
-			m_onComplete?.Invoke( m_name, count );
 			OnComplete?.Invoke( m_name, count );
 		}
 	}
